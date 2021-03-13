@@ -10,24 +10,26 @@ import {
 
 import "../styles/leaflet.css";
 
-const CurrentLocationMarker = () => {
-  const [position, setPosition] = React.useState(null);
-  const map = useMapEvents({
-    click() {
-      map.locate();
-    },
-    locationfound(e) {
-      setPosition(e.latlng);
-      map.flyTo(e.latlng, map.getZoom());
-    },
-  });
+//! Current Location Marker creates a marker on the user's current location
+//* Uncomment <CurrentLocationMarker/> in the parent component
+// const CurrentLocationMarker = () => {
+//   const [position, setPosition] = React.useState(null);
+//   const map = useMapEvents({
+//     click() {
+//       map.locate();
+//     },
+//     locationfound(e) {
+//       setPosition(e.latlng);
+//       map.flyTo(e.latlng, map.getZoom());
+//     },
+//   });
 
-  return position === null ? null : (
-    <Marker position={position} draggable={true}>
-      <Popup>You are here</Popup>
-    </Marker>
-  );
-};
+//   return position === null ? null : (
+//     <Marker position={position} draggable={true}>
+//       <Popup>You are here</Popup>
+//     </Marker>
+//   );
+// };
 
 const Map = (props) => {
   const [polygons, setPolygons] = React.useState([
@@ -48,7 +50,7 @@ const Map = (props) => {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <CurrentLocationMarker />
+        {/* <CurrentLocationMarker /> */}
         {/* <Marker position={[40.75, -73.931]}>
           <Popup>
             A pretty CSS3 popup. <br /> Easily customizable.
