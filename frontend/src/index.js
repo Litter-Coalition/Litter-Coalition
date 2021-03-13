@@ -4,10 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Auth0Provider } from "@auth0/auth0-react";
-const domain = process.env.DOMAIN
-const clientId = process.env.CLIENTID
-const redirectUri = process.env.REDIRECTURI
-
+const domain = process.env.REACT_APP_DOMAIN
+const clientId = process.env.REACT_APP_CLIENT_ID
+const redirectUri = process.env.REACT_APP_REDIRECT_URI
 
 ReactDOM.render(
   <React.StrictMode>
