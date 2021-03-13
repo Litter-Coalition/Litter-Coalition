@@ -128,5 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Exclude Data Files
-/data
+# VSC settings
+.vscode
+
+# exclude data
+data/
