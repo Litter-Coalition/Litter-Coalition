@@ -1,28 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
-import LoginButton from './components/LoginButton'
-import LogoutButton from './components/LogoutButton'
+import { Switch, Route } from 'react-router-dom'
+import LandingPage from './pages/LandingPage'
+import ViewEventsPage from './pages/ViewEventsPage'
+import ReportPage from './pages/ReportPage'
+import FAQPage from './pages/FAQPage'
 
 function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      <LoginButton/>
-      <LogoutButton/>
-      </header>
+      <Switch>
+          <Route exact path='/' component={LandingPage} />
+          <Route path='/view-events' component={ViewEventsPage} />
+          <Route path='/report' component={ReportPage} />
+          <Route path='/faq' component={FAQPage} />
+        </Switch>
     </div>
   );
 }
