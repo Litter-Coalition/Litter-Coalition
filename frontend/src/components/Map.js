@@ -4,58 +4,59 @@ import {
   TileLayer,
   Marker,
   Popup,
-  useMapEvent,
+  useMapEvents,
+  Polygon,
 } from "react-leaflet";
 
 import "../styles/leaflet.css";
 
-// const MyComponent = () => {
-//   const map = useMapEvent("click", () => {
-//     map.options.center([50.5, 30.5]);
-//   });
-//   return null;
-// };
-
-const Map = (props) => {
-  const [currentLocation, setCurrentLocation] = React.useState({
-    latlng: [40.75, -73.931],
-    zoom: 12,
+const CurrentLocationMarker = () => {
+  const [position, setPosition] = React.useState(null);
+  const map = useMapEvents({
+    click() {
+      map.locate();
+    },
+    locationfound(e) {
+      setPosition(e.latlng);
+      map.flyTo(e.latlng, map.getZoom());
+    },
   });
 
-  const handleCurrentLocation = () => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        console.log("Latitude is :", position.coords.latitude);
-        console.log("Longitude is :", position.coords.longitude);
-        setCurrentLocation({
-          latlng: [position.coords.latitude, position.coords.longitude],
-          zoom: 15,
-        });
-      });
-    } else {
-      console.log("Not Available");
-    }
-  };
+  return position === null ? null : (
+    <Marker position={position} draggable={true}>
+      <Popup>You are here</Popup>
+    </Marker>
+  );
+};
+
+const Map = (props) => {
+  const [polygons, setPolygons] = React.useState([
+    [
+      [40.75, -73.931],
+      [40.75, -74.931],
+    ],
+    [
+      [40.7568, -73.92133],
+      [40.7568, -74.93],
+    ],
+  ]);
+
   return (
     <div>
-      <button onClick={() => handleCurrentLocation()}>Current Location</button>
-      <div>{currentLocation.latlng}</div>
-      <div>{currentLocation.zoom}</div>
-      <MapContainer
-        center={currentLocation.latlng}
-        zoom={currentLocation.zoom}
-        scrollWheelZoom={true}
-      >
-        {/* <MyComponent /> */}
+      <MapContainer center={[40.75, -73.931]} zoom={12} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[51.505, -0.09]}>
+        <CurrentLocationMarker />
+        {/* <Marker position={[40.75, -73.931]}>
           <Popup>
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
-        </Marker>
+        </Marker> */}
+        {polygons.map((polygon, index) => {
+          return <Polygon key={index} positions={[polygon]} />;
+        })}
       </MapContainer>
     </div>
   );
