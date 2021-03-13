@@ -1,24 +1,33 @@
 import React from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMapEvent,
+} from "react-leaflet";
 
 import "../styles/leaflet.css";
 
+// const MyComponent = () => {
+//   const map = useMapEvent("click", () => {
+//     map.options.center([50.5, 30.5]);
+//   });
+//   return null;
+// };
+
 const Map = (props) => {
-  const [currentLocation, setcurrentLocation] = React.useState({
+  const [currentLocation, setCurrentLocation] = React.useState({
     latlng: [40.75, -73.931],
     zoom: 12,
   });
 
-  const map = React.useRef(null);
-
-  React.useEffect(() => {}, [currentLocation]);
-
-  const handlecurrentLocation = () => {
+  const handleCurrentLocation = () => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(function (position) {
         console.log("Latitude is :", position.coords.latitude);
         console.log("Longitude is :", position.coords.longitude);
-        setcurrentLocation({
+        setCurrentLocation({
           latlng: [position.coords.latitude, position.coords.longitude],
           zoom: 15,
         });
@@ -27,20 +36,17 @@ const Map = (props) => {
       console.log("Not Available");
     }
   };
-
-  console.log("currentLocation state -", currentLocation);
-
   return (
     <div>
-      <button onClick={() => handlecurrentLocation()}>Current Location</button>
+      <button onClick={() => handleCurrentLocation()}>Current Location</button>
       <div>{currentLocation.latlng}</div>
       <div>{currentLocation.zoom}</div>
       <MapContainer
         center={currentLocation.latlng}
         zoom={currentLocation.zoom}
         scrollWheelZoom={true}
-        ref={map}
       >
+        {/* <MyComponent /> */}
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
