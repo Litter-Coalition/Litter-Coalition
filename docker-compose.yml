@@ -1,0 +1,12 @@
+version: '2.0'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+    - "80:80"
+  api:
+    build: backend/
+    ports:
+      - "5000:5000"
+  db:
+    image: mdillon/postgis
