@@ -13,7 +13,7 @@ services:
     image: litter-coalition/geo_dataproc:latest
     environment:
       POSTGRES_DB: postgis
-      POSTGRES_USER: postgres
+      POSTGRES_USER: trashdev
     expose:
       - "5432"
     ports:
