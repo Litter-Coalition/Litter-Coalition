@@ -9,7 +9,7 @@ services:
     ports:
       - "5000:5000"
   db:
-    build: ./docker/geo_dataproc
+    build: ./geo_dataproc
     image: litter-coalition/geo_dataproc
     environment:
       POSTGRES_DB: postgis
