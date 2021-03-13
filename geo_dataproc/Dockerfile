@@ -24,5 +24,5 @@ RUN git clone https://github.com/mapbox/tippecanoe.git &&\
 # Build MBUtils; Utility for TilesDB -> /x/y/z tiles
 RUN git clone git://github.com/mapbox/mbutil.git
 
-COPY ./dataproc_geo.sh /dataproc_geo.sh
+COPY ./dataproc.sh /dataproc.sh
 
