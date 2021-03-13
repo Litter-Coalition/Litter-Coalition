@@ -3,10 +3,21 @@ services:
   nginx:
     image: nginx:latest
     ports:
-    - "80:80"
+      - "80:80"
   api:
     build: backend/
     ports:
       - "5000:5000"
   db:
-    image: mdillon/postgis
+    build: ./docker/geo_dataproc
+    image: litter-coalition/geo_dataproc
+    environment:
+      POSTGRES_DB: postgis
+      POSTGRES_USER: postgres
+    expose:
+      - "5432"
+    ports:
+      - "5433:5432" # Exposed to Host on 5433 (for DEV)
+    volumes:
+      - "./data/raw:/data/raw" # For Persisting MODA Source Data Files...
+    
