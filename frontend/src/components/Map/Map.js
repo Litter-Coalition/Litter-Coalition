@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
+import GeoLocator from "../../utils/geolocator";
 import { MapContainer, TileLayer } from "react-leaflet";
 
 import "../../styles/leaflet.css";
 
 import AddLocationMarker from "./AddLocationMarker";
 // import CurrentLocation from "./CurrentLocation"; // Current Location Marker creates a marker on the user's current location
-import Polygons from "./Polylines";
+import Polygons from "./Polygons";
+import MapUI from "./MapUI";
 
 const Map = (props) => {
-  const [polygons] = React.useState([
+  const [coords, setCoords] = useState([[40.75, -73.931]]);
+  const [polygons, setPolygons] = useState([
     {
       popup: "Proud Astorian",
       shape: [
@@ -36,35 +39,25 @@ const Map = (props) => {
     },
   ]);
 
-  const [addNewEvent, setAddNewEvent] = React.useState(false);
-  // const [newEventForm, setNewFormEvent] =
-  const [newEvent, setNewEvent] = React.useState([]);
-
-  const handleAdd = () => {
-    setAddNewEvent(true);
+  const addNewPolygon = (polygon) => {
+    setPolygons((polygons) => [...polygons, polygon]);
   };
 
-  const handleRemove = () => {
-    setAddNewEvent(false);
-    polygons.push({ popup: "test", shape: newEvent });
-    setNewEvent([]);
+  const updateCrds = () => {
+    console.log(GeoLocator.getCoords());
   };
 
   return (
     <div>
-      {addNewEvent ? (
-        <button onClick={() => handleRemove()}>Finish Drawing</button>
-      ) : (
-        <button onClick={() => handleAdd()}>Add a Route</button>
-      )}
+      <button onClick={updateCrds}>Locate Me</button>
       <MapContainer center={[40.75, -73.931]} zoom={12} scrollWheelZoom={true}>
+        <MapUI addNewPolygon={addNewPolygon} />
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url="http://localhost:8080/data/centerline/{z}/{x}/{y}.pbf"
         />
-        {addNewEvent ? <AddLocationMarker newEvent={newEvent} /> : null}
-        {addNewEvent ? <Polygons polygons={newEvent} /> : null}
-        <Polygons polygons={polygons} newEvent={newEvent} />
+        <Polygons polygons={polygons} />
       </MapContainer>
     </div>
   );
