@@ -14,8 +14,12 @@ const CreateEventForm = (props) => {
   };
 
   const [newEventData, setNewEventData] = React.useState(emptyEventData);
-  const [stepOne, setStepOne] = React.useState(true);
-  const [stepTwo, setStepTwo] = React.useState(false);
+  // const [stepOne, setStepOne] = React.useState(true);
+  // const [stepTwo, setStepTwo] = React.useState(false);
+  const [currentStep, setCurrentStep] = React.useState({
+    stepOne: true,
+    stepTwo: false,
+  });
 
   const handleChange = (event) => {
     setNewEventData({
@@ -25,13 +29,12 @@ const CreateEventForm = (props) => {
   };
 
   const handleSubmit = () => {
-    setStepOne(false);
-    setStepTwo(true);
+    setCurrentStep({ ...currentStep, stepOne: false, stepTwo: true });
   };
 
   return (
     <>
-      {stepOne && (
+      {currentStep.stepOne && (
         <>
           <Form>
             <FormGroup>
@@ -110,7 +113,7 @@ const CreateEventForm = (props) => {
           <Button onClick={() => handleSubmit()}>Continue</Button>
         </>
       )}
-      {stepTwo && <MapEventCreate />}
+      {currentStep.stepTwo && <MapEventCreate />}
     </>
   );
 };
