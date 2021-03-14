@@ -8,59 +8,71 @@ import AddLocationMarker from "./AddLocationMarker";
 // import CurrentLocation from "./CurrentLocation"; // Current Location Marker creates a marker on the user's current location
 import Polygons from "./Polygons";
 import MapUI from "./MapUI";
+import { polygon } from "leaflet";
+import { Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
 
 const Map = (props) => {
-  const [coords, setCoords] = useState([[40.75, -73.931]]);
-  const [polygons, setPolygons] = useState([
-    {
-      popup: "Proud Astorian",
-      shape: [
-        [40.7588954203221, -73.9190196990967],
-        [40.761300880922235, -73.91726016998292],
-        [40.760098161503265, -73.91472816467287],
-        [40.75575843890192, -73.91219615936281],
-      ],
-    },
-    {
-      popup: "Anti-Litter Group",
-      shape: [
-        [40.76120336394223, -73.92378330230714],
-        [40.76614404424928, -73.91974925994874],
-      ],
-    },
-    {
-      popup: "Hell's Kitchen Team",
-      shape: [
-        [40.772221877329024, -73.92595052719118],
-        [40.774171866400664, -73.93185138702394],
-        [40.77228687788679, -73.9329242706299],
-        [40.77205937565639, -73.93230199813844],
-      ],
-    },
-  ]);
+	const [polygons, setPolygons] = useState([
+	]);
 
-  const addNewPolygon = (polygon) => {
-    setPolygons((polygons) => [...polygons, polygon]);
-  };
+	const addNewPolygon = (polygon) => {
+		setPolygons((polygons) => [...polygons, polygon]);
+	};
 
-  const updateCrds = () => {
-    console.log(GeoLocator.getCoords());
-  };
+	const updatePolygonPopupData = (e, i) => {
+		console.log("wwww");
+	};
 
-  return (
-    <div>
-      <button onClick={updateCrds}>Locate Me</button>
-      <MapContainer center={[40.75, -73.931]} zoom={12} scrollWheelZoom={true}>
-        <MapUI addNewPolygon={addNewPolygon} />
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          url="http://localhost:8080/data/centerline/{z}/{x}/{y}.pbf"
-        />
-        <Polygons polygons={polygons} />
-      </MapContainer>
-    </div>
-  );
+	// duplicated no time to refactor
+	const highlightHoveredRoute = (i) => {
+		const polygonCopy = polygons;
+		polygonCopy[i].fillOptions = { color : "#FAE6E6"}
+		setPolygons([...polygonCopy])
+	}
+
+	const unHighlightHoveredRoute = (i) => {
+		const polygonCopy = polygons;
+		polygonCopy[i].fillOptions = { color : "#E88080"}
+		setPolygons([...polygonCopy])
+	}
+
+	const routes = polygons.map((polygon, index) => {
+		return (
+			<Row form>
+				<Col onMouseEnter={() => highlightHoveredRoute(index)} onMouseLeave={() => unHighlightHoveredRoute(index)}>
+					<FormGroup>
+						<Input
+							type="text"
+							name="route"
+							placeholder={polygon.popup}
+						/>
+					</FormGroup>
+				</Col>
+			</Row>
+		);
+	});
+
+	return (
+		<div>
+			<MapContainer
+				center={[40.75, -73.931]}
+				zoom={12}
+				scrollWheelZoom={true}
+			>
+				<MapUI addNewPolygon={addNewPolygon} />
+				<TileLayer
+					attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+					// url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+					url="http://localhost:8080/data/centerline/{z}/{x}/{y}.pbf"
+				/>
+				<Polygons
+					polygons={polygons}
+					updatePolygonPopupData={updatePolygonPopupData}
+				/>
+			</MapContainer>
+			<Form>{routes}</Form>
+		</div>
+	);
 };
 
 export default Map;

@@ -10,7 +10,6 @@ const ViewEventsPage = () => {
 			<ButtonGroup>
 				<Button onClick={() => setViewMap(true)}>View map</Button>
 				<Button onClick={() => setViewMap(false)}>View events</Button>
-				<Button>Right</Button>
 			</ButtonGroup>
 			{viewMap ? <Map /> : <h1>I'm a list of events</h1>}
 		</div>

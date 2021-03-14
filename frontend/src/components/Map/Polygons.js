@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { Marker, Polyline, Tooltip } from "react-leaflet";
-import Popup from 'react-leaflet-editable-popup';
+import Popup from "react-leaflet-editable-popup";
 import { Input } from "reactstrap";
 
-const Polygons = ({ polygons }) => {
+const Polygons = ({ polygons, updatePolygonPopupData }) => {
+	const [popup, setPopups] = useState([]);
+
+	const handleInputChange = (e, i) => {
+		console.log(e, i)
+		updatePolygonPopupData(e, i);
+	};
+
 	const mapped_polygons = polygons.map((polygon, index) => {
-		console.log(index, polygons[index + 1], polygons);
-		console.log(polygons[index + 1] == null ? true : false);
 		return (
-			<Polyline key={index} positions={[polygon.shape]}>
+			<Polyline key={index} positions={[polygon.shape]} pathOptions={polygon.fillOptions}>
 				<Popup
 					position={polygon.shape[0]}
 					open={polygons[index + 1] == null ? true : false}
 				>
 					<div>
-						<Input placeholder={polygon.popup}></Input>
+						<Input
+							placeholder="Enter a segment name"
+							value={polygon.popup}
+							onChange={handleInputChange}
+						></Input>
 					</div>
 				</Popup>
 			</Polyline>

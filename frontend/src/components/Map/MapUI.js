@@ -22,6 +22,9 @@ const MapUI = ({ addNewPolygon }) => {
 					addNewPolygon({
 						popup: `Hell's Kitchen Team ${count}`,
 						shape: polyArrCopy,
+						fillOptions: {
+							color: '#E88080'
+						}
 					});
                     setPolyArr([[e.latlng.lat, e.latlng.lng]])
 					setDrawing(false)
