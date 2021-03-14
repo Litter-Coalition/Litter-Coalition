@@ -1,7 +1,7 @@
 import React from "react";
 import { Polyline, Popup } from "react-leaflet";
 
-const Polygons = ({ polygons }) => {
+const Polylines = ({ polygons }) => {
   return (
     <>
       {polygons.map((polygon, index) => {
@@ -15,4 +15,4 @@ const Polygons = ({ polygons }) => {
   );
 };
 
-export default Polygons;
+export default Polylines;

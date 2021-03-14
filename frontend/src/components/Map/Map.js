@@ -5,7 +5,7 @@ import "../../styles/leaflet.css";
 
 import AddLocationMarker from "./AddLocationMarker";
 // import CurrentLocation from "./CurrentLocation"; // Current Location Marker creates a marker on the user's current location
-import Polygons from "./Polygons";
+import Polygons from "./Polylines";
 
 const Map = (props) => {
   const [polygons] = React.useState([
@@ -63,7 +63,7 @@ const Map = (props) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {addNewEvent ? <AddLocationMarker newEvent={newEvent} /> : null}
-        {addNewEvent ? <Polygons polygons={newEvent} /> : null}
+        <Polygons polygons={newEvent} />
         <Polygons polygons={polygons} newEvent={newEvent} />
       </MapContainer>
     </div>
