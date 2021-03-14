@@ -27,7 +27,7 @@ fi
 # Ref: https://fuzzytolerance.info/blog/2017/02/02/Making-your-own-tiles-with-Tippecanoe/
 # Ref: https://wiki.openstreetmap.org/wiki/Zoom_levels
 tippecanoe -L $2:./data/layers/$2.geojson \
-    -f -F -ps -pf -pk -pc -pt -Bg \
+    -f -F -ps -pf -pk -pt -Bg \
     --drop-densest-as-needed \
     -o ./data/layers/$2.mbtiles -z18 -Z10\
     --drop-lines\

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import LoginButton from "../components/LoginButton";
+import ShareButton from "../components/ShareButton";
 
 const LandingPage = () => {
   return (
@@ -13,7 +14,9 @@ const LandingPage = () => {
       <Link to="/faq">FAQ</Link>
       <br />
       <Link to="/create-event-form">Create Event</Link>
+      <br />
       <LoginButton />
+      <ShareButton platform="facebook" />
     </>
   );
 };
