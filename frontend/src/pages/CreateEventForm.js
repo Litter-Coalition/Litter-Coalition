@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 // import MapCreateEvent from "../components/MapCreateEvent(Legacy)";
-import MapCreateEvent from "../components/MapCreateEvent";
+import MapCreateEvent from "../components/CreateEventForm/MapCreateEvent";
 
 const CreateEventForm = (props) => {
   const emptyEventData = {
@@ -15,8 +15,6 @@ const CreateEventForm = (props) => {
   };
 
   const [newEventData, setNewEventData] = React.useState(emptyEventData);
-  // const [stepOne, setStepOne] = React.useState(true);
-  // const [stepTwo, setStepTwo] = React.useState(false);
   const [currentStep, setCurrentStep] = React.useState({
     stepOne: true,
     stepTwo: false,
