@@ -32,7 +32,11 @@
             "mbtiles": "centerline.mbtiles"
         },
         "maptiler-osm-2017-07-03-v3.6.1-new-york_new-york": {
+<<<<<<< HEAD
             "mbtiles": "maptiler-osm-2017-07-03-v3.6.1-new-york_new-york.mbtiles"
+=======
+            "mbtiles": "maptiler-osm-2017-07-03-v3.6.1-new-york_new-york.mbtiles?usage=education"
+>>>>>>> 2e3e9bdbfdc731a7b3225bc1aa6e3192f702c7d0
         }
     }
   }

@@ -8,6 +8,7 @@ services:
     build: backend/
     ports:
       - "5000:5000"
+
   
   tileserver:
     image: maptiler/tileserver-gl
@@ -20,8 +21,10 @@ services:
     environment:
         config: "./maptiler/config.json"
 
+
     env_file:
       - backend/.env
+
   db:
     build: geo_dataproc/
     image: litter-coalition/geo_dataproc:latest
