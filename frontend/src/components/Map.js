@@ -31,6 +31,21 @@ import "../styles/leaflet.css";
 //   );
 // };
 
+const AddLocationMarker = () => {
+  const [position, setPosition] = React.useState(null);
+  const map = useMapEvents({
+    click(e) {
+      setPosition(e.latlng);
+    },
+  });
+
+  return position === null ? null : (
+    <Marker position={position} draggable={true}>
+      <Popup>Staring Point!</Popup>
+    </Marker>
+  );
+};
+
 const Map = (props) => {
   const [polygons, setPolygons] = React.useState([
     [
@@ -42,6 +57,8 @@ const Map = (props) => {
       [40.7568, -74.93],
     ],
   ]);
+
+  const [currentLocation, setCurrentLocation] = React.useState(null);
 
   return (
     <div>
@@ -56,6 +73,7 @@ const Map = (props) => {
             A pretty CSS3 popup. <br /> Easily customizable.
           </Popup>
         </Marker> */}
+        <AddLocationMarker />
         {polygons.map((polygon, index) => {
           return <Polygon key={index} positions={[polygon]} />;
         })}
