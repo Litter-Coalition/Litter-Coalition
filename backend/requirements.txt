@@ -4,3 +4,4 @@ requests
 eventbrite
 Flask-SQLAlchemy
 psycopg2-binary
+uWSGI

@@ -48,7 +48,7 @@ def protected_route():
     return 'you are authenticated'
 
 
-@app.route('/event', methods=["POST"])
+@app.route('/api/v1/event', methods=["POST"])
 @requires_auth
 def event():
     # todo: check role of user to see if they are an organizer or admin
@@ -67,7 +67,7 @@ def event():
         return {"event_id": e.id}
 
 
-@app.route('/<zoom>/<x>/<y>.<tile_format>', methods=["GET"])
+@app.route('/api/v1/<zoom>/<x>/<y>.<tile_format>', methods=["GET"])
 def tiles(zoom, x, y, tile_format):
     try:
         tile = models.Tile(zoom, x, y, tile_format)

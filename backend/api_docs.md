@@ -3,7 +3,7 @@
 ### List Events
 Authentication: this route does not require authentication
 
-**Request:** `GET /event`
+**Request:** `GET /api/v1/event`
 ```json
 {
   "events": [
@@ -23,7 +23,7 @@ Authentication: this route does not require authentication
 ### Create an Event
 Authentication: this requires either a role of `admin` or `organizer`.
 
-**Request:** `POST /event`
+**Request:** `POST /api/v1/event`
 ```json
 {
   "name": "Litter Pickup",
@@ -49,7 +49,7 @@ Authentication: this requires either a role of `admin` or `organizer`.
 ### Dynamically load tile
 Authentication: this route does not require authentication
 
-**Request:** `GET /<zoom>/<x>/<y>.<tile_format>`
+**Request:** `GET /api/v1/<zoom>/<x>/<y>.<tile_format>`
 
 Path parameters
 * zoom [int] (required): the zoom level

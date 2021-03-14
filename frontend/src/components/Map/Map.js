@@ -54,8 +54,8 @@ const Map = (props) => {
         <MapUI addNewPolygon={addNewPolygon} />
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          // url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          url="http://localhost:8080/data/centerline/{z}/{x}/{y}.pbf"
+//           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url="http://127.0.0.1/tileserver/data/centerline/{z}/{x}/{y}.pbf"
         />
         <Polygons polygons={polygons} />
       </MapContainer>
