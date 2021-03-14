@@ -1,42 +1,50 @@
 {
-    "options": {
+  "options": {
       "paths": {
-        "root": "",
-        "mbtiles": "mbtiles"
+        "root": "/app/node_modules/tileserver-gl-styles",
+        "fonts": "fonts",
+        "styles": "styles",
+        "mbtiles": "/data/layers"
       },
       "domains": [
-        "localhost:8080",
-        "127.0.0.1:8080"
+          "localhost:8080",
+          "127.0.0.1:8080"
       ],
       "formatQuality": {
-        "jpeg": 80,
-        "webp": 90
+          "jpeg": 80,
+          "webp": 90
       },
       "maxScaleFactor": 3,
       "maxSize": 2048,
       "pbfAlias": "pbf",
-      "serveAllFonts": false,
+      "serveAllFonts": true,
       "serveStaticMaps": true
-    },
-    "styles": {
-      "basic": {
-        "style": "maptiler/style.json",
-        "tilejson": {
-          "type": "overlay",
-          "bounds": [8.44806, 47.32023, 8.62537, 47.43468]
-        }
+  },
+  "styles": {
+    "litter-coalition": {
+      "style": "litter-coalition/style.json",
+      "tilejson": {
+        "bounds": [ 
+          -74.2338,40.4518,-73.515,41.0005
+        ]
       }
-    },
-    "data": {
-        "centerlines": {
-            "mbtiles": "centerline.mbtiles"
-        },
-        "maptiler-osm-2017-07-03-v3.6.1-new-york_new-york": {
-<<<<<<< HEAD
-            "mbtiles": "maptiler-osm-2017-07-03-v3.6.1-new-york_new-york.mbtiles"
-=======
-            "mbtiles": "maptiler-osm-2017-07-03-v3.6.1-new-york_new-york.mbtiles?usage=education"
->>>>>>> 2e3e9bdbfdc731a7b3225bc1aa6e3192f702c7d0
-        }
+    }
+  },
+  "sources": {
+      "bg": {
+          "url": "mbtiles://nyc_base.mbtiles",
+          "type": "vector"
+      }
+  },
+  "data": {
+      "cl-1": {
+          "mbtiles": "centerline.mbtiles"
+      },
+      "cl-2": {
+        "mbtiles": "centerline_active.mbtiles"
+      },
+      "bg": {
+        "mbtiles": "nyc_base.mbtiles"
     }
   }
+}
