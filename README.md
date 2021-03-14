@@ -9,8 +9,7 @@ A mono repo to rule all the trash
 docker-compose build
 docker-compose up
 ```
-
-### Seeding Data For Development
+### Seed Data For Dev [Optional]
 
 Sample data available in Postgres and as MBtiles via the following:
 
@@ -57,5 +56,16 @@ Sample data available in Postgres and as MBtiles via the following:
 ### Flask
 
 To access the flask API:
+=======
+First time setting it up
+```
+docker-compose up -d --build
+# initialize the DB
+docker-compose exec api python manage.py create_db
+```
+
+
+To access the flask API
+>>>>>>> Stashed changes
 
 `curl http://127.0.0.1:50000`
