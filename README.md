@@ -5,8 +5,9 @@ A mono repo to rule all the trash
 ## Development
 
 ```bash
+# if you are trying to load tiles you will need to skip to the Seed Data section
 docker-compose build
-docker-compose run
+docker-compose up
 ```
 
 ### Seed Data For Dev [Optional]
