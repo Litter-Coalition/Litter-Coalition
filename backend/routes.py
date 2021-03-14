@@ -49,18 +49,36 @@ def protected_route():
 @app.route('/event', methods=["POST"])
 @requires_auth
 def event():
+    # todo: check role of user to see if they are an organizer or admin
     if request.method == "POST":
         r = request.get_json()
-        required_fields = ["name", "date", "start_time", "url"]
+        required_fields = ["name", "date", "url"]
         for field in required_fields:
             if not r.get(field):
-                return {"error": "missing name field"}, 400
-        name = r.get("name"),
+                return {"error": "missing {} field".format(field)}, 400
+        name = r.get("name")
         time = r.get("date")
         url = r.get("url")
         e = models.Event(name, time, url)
         db.session.add(e)
         db.session.commit()
-    # todo: check role of user to see if they are an organizer or admin
-    return 'you are authenticated'
+        return {"event_id": e.id}
 
+
+@app.route('/<zoom>/<x>/<y>.<tile_format>', methods=["GET"])
+def tiles(zoom, x, y, tile_format):
+    return "{} {} {} {}".format(zoom, x, y, tile_format)
+
+
+# def tileIsValid(self, tile):
+#     if not ('x' in tile and 'y' in tile and 'zoom' in tile):
+#         return False
+#     if 'format' not in tile or tile['format'] not in ['pbf', 'mvt']:
+#         return False
+#     size = 2 ** tile['zoom'];
+#     if tile['x'] >= size or tile['y'] >= size:
+#         return False
+#     if tile['x'] < 0 or tile['y'] < 0:
+#         return False
+#     return True
+#
