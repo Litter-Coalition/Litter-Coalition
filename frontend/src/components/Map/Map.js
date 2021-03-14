@@ -34,6 +34,7 @@ const Map = (props) => {
         [40.77205937565639, -73.93230199813844],
       ],
     },
+<<<<<<< HEAD
     {
       popup: "test",
       shape: [[1, 2]],
@@ -53,6 +54,8 @@ const Map = (props) => {
         [3, 4],
       ],
     },
+=======
+>>>>>>> 984744d340ab1fa569a1b51f238a5dcc45b3a698
   ]);
 
   const [addNewEvent, setAddNewEvent] = React.useState(false);
@@ -82,7 +85,11 @@ const Map = (props) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {addNewEvent ? <AddLocationMarker newEvent={newEvent} /> : null}
+<<<<<<< HEAD
         <Polygons polygons={newEvent} />
+=======
+        {addNewEvent ? <Polygons polygons={newEvent} /> : null}
+>>>>>>> 984744d340ab1fa569a1b51f238a5dcc45b3a698
         <Polygons polygons={polygons} newEvent={newEvent} />
       </MapContainer>
     </div>
