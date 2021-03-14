@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import LoginButton from '../components/LoginButton'
+import ShareButton from '../components/ShareButton'
 
 
 
@@ -12,6 +13,7 @@ const LandingPage = () => {
         <Link to='/report'>Report</Link><br/>
         <Link to='/faq'>FAQ</Link><br/>
         <LoginButton/>
+        <ShareButton platform='facebook'/>
         </>
     )
 }
