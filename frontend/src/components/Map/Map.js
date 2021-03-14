@@ -34,6 +34,25 @@ const Map = (props) => {
         [40.77205937565639, -73.93230199813844],
       ],
     },
+    {
+      popup: "test",
+      shape: [[1, 2]],
+    },
+    {
+      popup: "test",
+      shape: [
+        [1, 2],
+        [2, 3],
+      ],
+    },
+    {
+      popup: "test",
+      shape: [
+        [1, 2],
+        [2, 3],
+        [3, 4],
+      ],
+    },
   ]);
 
   const [addNewEvent, setAddNewEvent] = React.useState(false);
