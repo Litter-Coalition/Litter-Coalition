@@ -7,7 +7,8 @@ const GeoLocator = {
 		maximumAge: 0,
 	},
 	success(pos) {
-		return [pos.coords.latitude, pos.coords.longitude];
+		const coords = pos.coords;
+		return [coords.latitude, coords.longitude];
 	},
 	error(err) {
 		console.warn(
@@ -21,6 +22,8 @@ const GeoLocator = {
 			this.error,
 			this.options
 		);
+
+		return [1, 2]
 	},
 };
 

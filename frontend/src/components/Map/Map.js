@@ -38,24 +38,6 @@ const Map = (props) => {
 			],
 		},
 	]);
-	// GeoLocator.getCoords()
-
-	const [addNewEvent, setAddNewEvent] = useState(false);
-	const [newEvent, setNewEvent] = useState([]);
-
-	const handleAdd = () => {
-		if (addNewEvent) {
-			//
-		} else {
-			setAddNewEvent(true);
-		}
-	};
-
-	const handleRemove = () => {
-		setAddNewEvent(false);
-		polygons.push({ popup: "test", shape: newEvent });
-		setNewEvent([]);
-	};
 
 	const addNewPolygon = (polygon) => {
 		setPolygons((polygons) => [...polygons, polygon]);
@@ -67,7 +49,7 @@ const Map = (props) => {
 
 	return (
 		<div>
-			<button onClick={updateCrds}>Add a Route</button>
+			<button onClick={updateCrds}>Locate Me</button>
 			<MapContainer
 				center={[40.75, -73.931]}
 				zoom={12}

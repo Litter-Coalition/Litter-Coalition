@@ -23,7 +23,8 @@ const MapUI = ({ addNewPolygon }) => {
 						popup: `Hell's Kitchen Team ${count}`,
 						shape: polyArrCopy,
 					});
-                    setPolyArr([])
+                    setPolyArr([[e.latlng.lat, e.latlng.lng]])
+					setDrawing(false)
 				}
 			}
 		},
@@ -32,10 +33,7 @@ const MapUI = ({ addNewPolygon }) => {
 	return (
 		<div>
 			<Button className="test-btn" onClick={() => setDrawing(true)}>
-				draw
-			</Button>
-			<Button className="test-btn" onClick={() => setDrawing(false)}>
-				stop draw
+				Add Route
 			</Button>
 		</div>
 	);
