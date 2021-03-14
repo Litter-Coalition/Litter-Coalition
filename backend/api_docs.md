@@ -2,6 +2,7 @@
 
 ### List Events
 Authentication: this route does not require authentication
+
 **Request:** `GET /event`
 ```json
 {
@@ -45,3 +46,16 @@ Authentication: this requires either a role of `admin` or `organizer`.
 {"event_id":"1"}
 ```
 
+### Dynamically load tile
+Authentication: this route does not require authentication
+
+**Request:** `GET /<zoom>/<x>/<y>.<tile_format>`
+
+Path parameters
+* zoom [int] (required): the zoom level
+* x [float] (required): the x coordinate
+* x [float] (required): the x coordinate
+* tile_format [str] (required): tile format - either pbf or mvt
+
+**Response:**
+Response type: `application/vnd.mapbox-vector-tile`
