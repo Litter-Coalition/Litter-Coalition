@@ -18,7 +18,7 @@ Sample data available in Postgres and as MBtiles via the following:
 
 2. [**SKIP**] Get basemap layer here: `https://data.maptiler.com/downloads/tileset/osm/north-america/us/new-york/new-york/`, should give a one time download link `wget -c https://data.maptiler.com/download/<TOKEN>/maptiler-osm-2017-07-03-v3.6.1-new-york_new-york.mbtiles?usage=education`
 
-3. Exec into `litter-coalition_db_1` with `docker exec -ti litter-coalition_db_1 bash` and run `bash ./dataproc.sh ./data/raw/Centerline_20170501.zip centerline` to populate the DB and generate mbtiles. This pattern will hold for (most) geospatial available through the open data portal, `bash dataproc.sh <LOCAL FILE> <LAYERNAME>` should allow for drop in replacement of any other dataset. This step allows for the following:
+3. Exec into `litter-coalition_db_1` with `docker exec -ti litter-coalition_db_1 bash` and run `bash ./dataproc.sh ./data/raw/Centerline_20170501.zip centerline` to populate the DB and generate mbtiles. After this completes which can take some time you will need to restart the tile server `docker restart litter-coalition_tileserver_1`. This pattern will hold for (most) geospatial available through the open data portal, `bash dataproc.sh <LOCAL FILE> <LAYERNAME>` should allow for drop in replacement of any other dataset. This step allows for the following:
 
    - Streets Data Available in DB `litter_coalition` @ `public.centerline`
    - Streets Data Available as MBtiles on Zoom (10,TBD) at `/data/layers/centerline.mbtiles` (for tileServer GL)
