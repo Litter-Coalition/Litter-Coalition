@@ -13,18 +13,18 @@ docker-compose run
 
 Sample data available in Postgres and as MBtiles via the following:
 
-1. Download NYC [streets data](https://data.cityofnewyork.us/City-Government/NYC-Street-Centerline-CSCL-/exjm-f27b) from NYC Open Data Portal in the `Original` format and save to `./data/raw/` (this file is ~70MB and the folder is included in `.gitignore`)
+1. Download NYC [streets data](https://data.cityofnewyork.us/api/views/exjm-f27b/files/7fdd753b-08d3-4cdc-aaad-94be7c5a32a6?download=true&filename=Centerline_20170501.zip) save to `./data/raw/` (this file is ~70MB and the folder is included in `.gitignore`)
 
 2. [**SKIP**] Get basemap layer here: `https://data.maptiler.com/downloads/tileset/osm/north-america/us/new-york/new-york/`, should give a one time download link `wget -c https://data.maptiler.com/download/<TOKEN>/maptiler-osm-2017-07-03-v3.6.1-new-york_new-york.mbtiles?usage=education`
 
-3. Exec into `litter-coalition_db_1` with `docker exec -ti litter-coalition_db_1 bash` and run `bash ./dataproc.sh ./data/raw/Centerline.zip centerline` to populate the DB and generate mbtiles. This pattern will hold for (most) geospatial available through the open data portal, `bash dataproc.sh <LOCAL FILE> <LAYERNAME>` should allow for drop in replacement of any other dataset. This step allows for the following:
+3. Exec into `litter-coalition_db_1` with `docker exec -ti litter-coalition_db_1 bash` and run `bash ./dataproc.sh ./data/raw/Centerline_20170501.zip centerline` to populate the DB and generate mbtiles. This pattern will hold for (most) geospatial available through the open data portal, `bash dataproc.sh <LOCAL FILE> <LAYERNAME>` should allow for drop in replacement of any other dataset. This step allows for the following:
 
-   - Streets Data Available in DB `postgres` @ `public.centerline`
+   - Streets Data Available in DB `litter_coalition` @ `public.centerline`
    - Streets Data Available as MBtiles on Zoom (10,TBD) at `/data/layers/centerline.mbtiles` (for tileServer GL)
 
 4. [**OPTIONAL**]. Test the database connection and that files loaded as expected with a query to count rows in the target table. Assumes you have `psql`, can use any db client.
 
-    - `psql -h psql -qAt -h localhost -p 5433 -d postgres -U trashdev -c 'select count(*) from centerline;'`
+    - `psql -h psql -qAt -h localhost -p 5433 -d litter_coalition -U trash -c 'select count(*) from centerline;'`
 
 5. [**NOTE/WIP**] There **should** be a way to serve multiple layers without restarting the `litter-coalition_tileserver_1` container. As it stands, not yet determined how to do this. The easiest way to have tileserver-gl recognize the `centerlines.mbtiles` file is to run `docker restart litter-coalition_tileserver_1`. Expect the following logs from `compose`.
 
