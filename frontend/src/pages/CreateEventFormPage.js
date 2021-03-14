@@ -1,8 +1,8 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 import CreateEventForm from "../components/CreateEventForm/CreateEventForm";
 import MapCreateEvent from "../components/CreateEventForm/MapCreateEvent";
+import EventConfirmation from "../components/CreateEventForm/EventConfirmation";
 
 const CreateEventFormPage = (props) => {
   //* States
@@ -30,7 +30,9 @@ const CreateEventFormPage = (props) => {
     });
   };
 
-  const handleSubmitStepOne = () => {
+  const handleSubmitStepOne = (event) => {
+    event.preventDefault();
+    console.log("poop");
     setCurrentStep({ ...currentStep, stepOne: false, stepTwo: true });
   };
 
@@ -51,7 +53,7 @@ const CreateEventFormPage = (props) => {
         <MapCreateEvent handleSubmitStepTwo={handleSubmitStepTwo} />
       )}
       {currentStep.stepThree && (
-        <div>This is Step Three (Confirmation page)</div>
+        <EventConfirmation newEventData={newEventData} />
       )}
     </>
   );
