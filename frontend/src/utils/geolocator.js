@@ -8,7 +8,8 @@ const GeoLocator = {
 	},
 	success(pos) {
 		const coords = pos.coords;
-		return [coords.latitude, coords.longitude];
+		// return [coords.latitude, coords.longitude];
+		return [0, 1];
 	},
 	error(err) {
 		console.warn(
@@ -22,8 +23,6 @@ const GeoLocator = {
 			this.error,
 			this.options
 		);
-
-		return [1, 2]
 	},
 };
 
