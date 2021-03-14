@@ -3,15 +3,15 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "81:81"
+      - "80:80"
     depends_on:
       - db
   api:
     build: backend/
     ports:
       - "5000:5000"
-    # env_file:
-    #   - backend/.env
+    env_file:
+      - backend/.env
 
 
   tileserver:
