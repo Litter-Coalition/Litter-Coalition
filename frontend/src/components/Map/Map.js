@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import GeoLocator from "../../utils/geolocator";
 import { MapContainer, TileLayer } from "react-leaflet";
 
 import "../../styles/leaflet.css";
@@ -9,7 +10,8 @@ import Polygons from "./Polygons";
 import MapUI from "./MapUI";
 
 const Map = (props) => {
-	const [polygons, setPolygons] = React.useState([
+	const [coords, setCoords] = useState([[40.75, -73.931]]);
+	const [polygons, setPolygons] = useState([
 		{
 			popup: "Proud Astorian",
 			shape: [
@@ -36,11 +38,10 @@ const Map = (props) => {
 			],
 		},
 	]);
+	// GeoLocator.getCoords()
 
-	const [addNewEvent, setAddNewEvent] = React.useState(false);
-	// const [newEventForm, setNewFormEvent] =
-	const [newEvent, setNewEvent] = React.useState([]);
-	const [newPolygon, setNewPolygon] = React.useState([]);
+	const [addNewEvent, setAddNewEvent] = useState(false);
+	const [newEvent, setNewEvent] = useState([]);
 
 	const handleAdd = () => {
 		if (addNewEvent) {
@@ -60,13 +61,13 @@ const Map = (props) => {
 		setPolygons((polygons) => [...polygons, polygon]);
 	};
 
+	const updateCrds = () => {
+    console.log(GeoLocator.getCoords())
+  }
+
 	return (
 		<div>
-			{addNewEvent ? (
-				<button onClick={() => handleRemove()}>Finish Drawing</button>
-			) : (
-				<button onClick={() => handleAdd()}>Add a Route</button>
-			)}
+			<button onClick={updateCrds}>Add a Route</button>
 			<MapContainer
 				center={[40.75, -73.931]}
 				zoom={12}
