@@ -7,14 +7,8 @@ A mono repo to rule all the trash
 ```bash
 # if you are trying to load tiles you will need to skip to the Seed Data section
 docker-compose build
-<<<<<<< HEAD
 docker-compose up
-=======
-docker-compose up -d --build
->>>>>>> temporary changes
 ```
-
-<<<<<<< Updated upstream
 ### Seed Data For Dev [Optional]
 
 Sample data available in Postgres and as MBtiles via the following:
