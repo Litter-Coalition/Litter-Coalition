@@ -2,10 +2,13 @@ from os import environ
 
 from flask import session
 from flask import redirect
+from flask import request
 
 from utils import requires_auth
 from app import app
 from utils import auth0
+import models
+from app import db
 
 PROFILE_KEY = environ.get("PROFILE_KEY")
 JWT_PAYLOAD = environ.get("JWT_PAYLOAD")
@@ -41,3 +44,23 @@ def callback_handling():
 @requires_auth
 def protected_route():
     return 'you are authenticated'
+
+
+@app.route('/event', methods=["POST"])
+@requires_auth
+def event():
+    if request.method == "POST":
+        r = request.get_json()
+        required_fields = ["name", "date", "start_time", "url"]
+        for field in required_fields:
+            if not r.get(field):
+                return {"error": "missing name field"}, 400
+        name = r.get("name"),
+        time = r.get("date")
+        url = r.get("url")
+        e = models.Event(name, time, url)
+        db.session.add(e)
+        db.session.commit()
+    # todo: check role of user to see if they are an organizer or admin
+    return 'you are authenticated'
+
