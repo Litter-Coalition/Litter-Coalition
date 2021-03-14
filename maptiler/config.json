@@ -1,0 +1,48 @@
+{
+  "options": {
+      "paths": {
+        "root": "/app/node_modules/tileserver-gl-styles",
+        "fonts": "fonts",
+        "styles": "styles",
+        "mbtiles": "/data/layers"
+      },
+      "domains": [
+          "localhost:8080",
+          "127.0.0.1:8080",
+          "litter-coalition:8080"
+      ],
+      "formatQuality": {
+          "jpeg": 80,
+          "webp": 90
+      },
+      "maxScaleFactor": 3,
+      "maxSize": 2048,
+      "pbfAlias": "pbf",
+      "serveAllFonts": true,
+      "serveStaticMaps": true
+  },
+  "styles": {
+    "litter-coalition": {
+      "style": "litter-coalition/style.json",
+      "tilejson": {
+        "bounds": [ 
+          -74.2338,40.4518,-73.515,41.0005
+        ]
+      }
+    }
+  },
+  "sources": {
+      "styling-example": {
+          "url": "mbtiles://nyc_detail.mbtiles",
+          "type": "vector"
+      }
+  },
+  "data": {
+      "all-streets": {
+          "mbtiles": "centerline.mbtiles"
+      },
+      "styling-example": {
+        "mbtiles": "nyc_detail.mbtiles"
+      }
+  }
+}

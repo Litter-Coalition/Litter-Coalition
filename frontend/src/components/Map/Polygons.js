@@ -30,7 +30,7 @@ const Polygons = ({ polygons, updatePolygonPopupData }) => {
 		);
 	});
 
-	return <>{mapped_polygons}</>;
+  return <>{mapped_polygons}</>;
 };
 
 export default Polygons;

@@ -1,14 +1,49 @@
 version: '2.0'
 services:
   nginx:
-    image: nginx:latest
+    build: nginx/
     ports:
-    - "80:80"
+      - "80:80"
+    volumes:
+      - ./frontend/build:/var/www/react  
+      - socket-volume:/app/socket
+
   api:
     build: backend/
     ports:
       - "5000:5000"
     env_file:
       - backend/.env
+    depends_on:
+      - db
+    volumes:
+      - socket-volume:/app/socket
+
+  tileserver:
+    image: maptiler/tileserver-gl
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./maptiler/config.json:/config.json" # For persisting tiles...
+      - "./data/layers/:/data/layers" # For persisting tiles; volume shared with db
+      - "./maptiler/styles/:/app/node_modules/tileserver-gl-styles/styles/" # Copy In Styling...
+    command: -p 8080 --verbose --config /config.json
+
   db:
-    image: mdillon/postgis
+    build: geo_dataproc/
+    image: litter-coalition/geo_dataproc:latest
+    environment:
+      POSTGRES_DB: litter_coalition
+      POSTGRES_USER: trash
+    expose:
+      - "5432" # Allow other containers to call DB...
+    ports:
+      - "5433:5432" # Exposed to Host on 5433 (for DEV)
+    volumes:
+      - "./data/raw:/data/raw" # For Persisting MODA Source Data Files...
+      - "./data/layers/:/data/layers/" # For persisting tiles...
+      - postgres_data:/var/lib/postgresql/data/ # for persisting the database
+
+volumes:
+  postgres_data:
+  socket-volume:

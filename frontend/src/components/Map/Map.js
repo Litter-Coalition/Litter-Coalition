@@ -12,8 +12,7 @@ import { polygon } from "leaflet";
 import { Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
 
 const Map = (props) => {
-	const [polygons, setPolygons] = useState([
-	]);
+	const [polygons, setPolygons] = useState([]);
 
 	const addNewPolygon = (polygon) => {
 		setPolygons((polygons) => [...polygons, polygon]);
@@ -26,20 +25,23 @@ const Map = (props) => {
 	// duplicated no time to refactor
 	const highlightHoveredRoute = (i) => {
 		const polygonCopy = polygons;
-		polygonCopy[i].fillOptions = { color : "#FAE6E6"}
-		setPolygons([...polygonCopy])
-	}
+		polygonCopy[i].fillOptions = { color: "#FAE6E6" };
+		setPolygons([...polygonCopy]);
+	};
 
 	const unHighlightHoveredRoute = (i) => {
 		const polygonCopy = polygons;
-		polygonCopy[i].fillOptions = { color : "#E88080"}
-		setPolygons([...polygonCopy])
-	}
+		polygonCopy[i].fillOptions = { color: "#E88080" };
+		setPolygons([...polygonCopy]);
+	};
 
 	const routes = polygons.map((polygon, index) => {
 		return (
 			<Row form>
-				<Col onMouseEnter={() => highlightHoveredRoute(index)} onMouseLeave={() => unHighlightHoveredRoute(index)}>
+				<Col
+					onMouseEnter={() => highlightHoveredRoute(index)}
+					onMouseLeave={() => unHighlightHoveredRoute(index)}
+				>
 					<FormGroup>
 						<Input
 							type="text"
