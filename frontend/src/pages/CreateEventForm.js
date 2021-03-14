@@ -1,7 +1,8 @@
 import React from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
-import MapEventCreate from "../components/MapEventCreate";
+// import MapCreateEvent from "../components/MapCreateEvent(Legacy)";
+import MapCreateEvent from "../components/MapCreateEvent";
 
 const CreateEventForm = (props) => {
   const emptyEventData = {
@@ -110,10 +111,10 @@ const CreateEventForm = (props) => {
               />
             </FormGroup>
           </Form>
-          <Button onClick={() => handleSubmit()}>Continue</Button>
+          <Button onClick={() => handleSubmit()}>Create Map</Button>
         </>
       )}
-      {currentStep.stepTwo && <MapEventCreate />}
+      {currentStep.stepTwo && <MapCreateEvent />}
     </>
   );
 };

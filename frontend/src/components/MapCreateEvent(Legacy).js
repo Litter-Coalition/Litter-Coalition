@@ -13,6 +13,7 @@ const MapEventCreate = (props) => {
             id="startingPoint"
             placeholder="Starting Point"
           />
+          <Button>Go</Button>
         </FormGroup>
       </Form>
       <Form>
