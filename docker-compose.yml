@@ -3,7 +3,9 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "81:81"
+      - "80:80"
+    depends_on:
+      - db
   api:
     build: backend/
     ports:
@@ -11,19 +13,16 @@ services:
     env_file:
       - backend/.env
 
-  
+
   tileserver:
     image: maptiler/tileserver-gl
-    expose:
-      - "80" # Make Available...
     ports:
-      - "8080:80"
+      - "8080:8080"
     volumes:
-      - "./data/layers/:/data/" # For persisting tiles... 
+      - "./data/layers/:/data/" # For persisting tiles...
     environment:
         config: "./maptiler/config.json"
-
-
+    command: -p 8080 --verbose
 
   db:
     build: geo_dataproc/
@@ -38,4 +37,4 @@ services:
     volumes:
       - "./data/raw:/data/raw" # For Persisting MODA Source Data Files...
       - "./data/layers/:/data/layers/" # For persisting tiles...
-    
+
