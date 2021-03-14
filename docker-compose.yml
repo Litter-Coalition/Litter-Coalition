@@ -3,21 +3,34 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "80:80"
+      - "81:81"
   api:
     build: backend/
     ports:
       - "5000:5000"
+  
+  tileserver:
+    image: maptiler/tileserver-gl
+    expose:
+      - "80" # Make Available...
+    ports:
+      - "8080:80"
+    volumes:
+      - "./data/layers/:/data/" # For persisting tiles... 
+    environment:
+        config: "./maptiler/config.json"
+
   db:
     build: geo_dataproc/
     image: litter-coalition/geo_dataproc:latest
     environment:
-      POSTGRES_DB: postgis
+      POSTGRES_DB: postgres
       POSTGRES_USER: trashdev
     expose:
-      - "5432"
+      - "5432" # Allow other containers to call DB...
     ports:
       - "5433:5432" # Exposed to Host on 5433 (for DEV)
     volumes:
       - "./data/raw:/data/raw" # For Persisting MODA Source Data Files...
+      - "./data/layers/:/data/layers/" # For persisting tiles...
     

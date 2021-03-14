@@ -1,15 +1,9 @@
 #! bin/sh
 
-# Check if src is valid file...
-if [ ! -f "$1" ]; then
-    exit
-fi
-
 # Check if src is spatial archive or file...
-if [ -d "$1" ]; then
+if [ -f "$1" ]; then
     # Unzip Static Geospatial Data
-    mkdir -p ./data/layers &&\
-        unzip -o $1 -d ./data/layers/$2
+    mkdir -p ./data/layers && unzip -o $1 -d ./data/layers/$2
         
     # Write Streets as DB Objects -> PostGIS; Convert to EPSG 4326, (lng, lat)
     # Option: Serving Dynamic Tiles
@@ -28,20 +22,16 @@ if [ -d "$1" ]; then
         ./data/layers/$2.geojson  ./data/layers/$2/
 fi
 
-
-
 # To MBTiles - Create a SQLiteDB w. all shapes prepped for /x/y/z extraction
-# Use level 10->18
+# Use level 13->16; this is expensive, consider running to level 20 for production??
 # Ref: https://fuzzytolerance.info/blog/2017/02/02/Making-your-own-tiles-with-Tippecanoe/
 # Ref: https://wiki.openstreetmap.org/wiki/Zoom_levels
 tippecanoe -L $2:./data/layers/$2.geojson \
+    -f -F -ps -pf -pk -pc -pt -Bg \
     --drop-densest-as-needed \
-    -o ./data/layers/$2.mbtiles -z18 -Z10 \
+    -o ./data/layers/$2.mbtiles -z18 -Z10\
+    --drop-lines\
     --force
 
-# MB-Util; Extract all Tiles...
-./mbutil/mb-util /data/layers/$2.mbtiles \
-    /data/layers/$2_tiles
-
-# Cleanup, save a bit of space
-rm -rf /data/layers/$2
+# Cleanup: save a bit of space in the container
+rm -rf /data/layers/$2 /data/layers/$2.geojson
