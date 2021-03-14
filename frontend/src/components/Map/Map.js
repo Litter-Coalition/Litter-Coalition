@@ -55,7 +55,7 @@ const Map = (props) => {
       {addNewEvent ? (
         <button onClick={() => handleRemove()}>Finish Drawing</button>
       ) : (
-        <button onClick={() => handleAdd()}>Add an Event</button>
+        <button onClick={() => handleAdd()}>Add a Route</button>
       )}
       <MapContainer center={[40.75, -73.931]} zoom={12} scrollWheelZoom={true}>
         <TileLayer
