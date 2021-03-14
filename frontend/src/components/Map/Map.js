@@ -9,7 +9,7 @@ import Polygons from "./Polygons";
 import MapUI from "./MapUI";
 
 const Map = (props) => {
-	const [polygons] = React.useState([
+	const [polygons, setPolygons] = React.useState([
 		{
 			popup: "Proud Astorian",
 			shape: [
@@ -44,7 +44,7 @@ const Map = (props) => {
 
 	const handleAdd = () => {
 		if (addNewEvent) {
-      // 
+			//
 		} else {
 			setAddNewEvent(true);
 		}
@@ -54,6 +54,10 @@ const Map = (props) => {
 		setAddNewEvent(false);
 		polygons.push({ popup: "test", shape: newEvent });
 		setNewEvent([]);
+	};
+
+	const addNewPolygon = (polygon) => {
+		setPolygons((polygons) => [...polygons, polygon]);
 	};
 
 	return (
@@ -68,13 +72,11 @@ const Map = (props) => {
 				zoom={12}
 				scrollWheelZoom={true}
 			>
-        <MapUI />
+				<MapUI addNewPolygon={addNewPolygon} />
 				<TileLayer
 					attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
-				{addNewEvent ? <Polygons polygons={newPolygon} /> : null}
-				{/* {addNewEvent ? <Polygons polygons={newEvent} /> : null} */}
 				<Polygons polygons={polygons} />
 			</MapContainer>
 		</div>
