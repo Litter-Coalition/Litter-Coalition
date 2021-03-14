@@ -30,8 +30,8 @@ const CreateEventFormPage = (props) => {
     });
   };
 
-  const handleSubmitStepOne = (event) => {
-    event.preventDefault();
+  const handleSubmitStepOne = () => {
+    // event.preventDefault();
     console.log("poop");
     setCurrentStep({ ...currentStep, stepOne: false, stepTwo: true });
   };

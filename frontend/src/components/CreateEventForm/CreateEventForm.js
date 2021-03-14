@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const CreateEventForm = ({
   newEventData,
@@ -8,7 +8,7 @@ const CreateEventForm = ({
 }) => {
   return (
     <>
-      <Form onSubmit={handleSubmitStepOne}>
+      <Form>
         <FormGroup>
           <Label for="eventTitle">Event Title</Label>
           <Input
@@ -82,7 +82,8 @@ const CreateEventForm = ({
           />
         </FormGroup>
       </Form>
-      <Input type="submit" value="submit" />
+      // <Input type="submit" value="submit" />
+      <Button onClick={() => handleSubmitStepOne()}>Create Map</Button>
     </>
   );
 };
