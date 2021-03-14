@@ -5,8 +5,7 @@ import ViewEventsPage from "./pages/ViewEventsPage";
 import ViewEventPage from './pages/ViewEventPage';
 import ReportPage from "./pages/ReportPage";
 import FAQPage from "./pages/FAQPage";
-import CreateEventForm from "./pages/CreateEventForm";
-import MapEventCreate from "./pages/MapEventCreate";
+import CreateEventFormPage from "./pages/CreateEventFormPage";
 
 // import GeoLocator from "./utils/geolocator";
 
@@ -20,8 +19,7 @@ function App() {
         <Route path="/event/:id" component={ViewEventPage} />
         <Route path="/report" component={ReportPage} />
         <Route path="/faq" component={FAQPage} />
-        <Route path="/create-event-form" component={CreateEventForm} />
-        <Route path="/map-event-create" component={MapEventCreate} />
+        <Route path="/create-event-form" component={CreateEventFormPage} />
       </Switch>
     </div>
   );

@@ -1,8 +1,11 @@
 import React from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { Link } from "react-router-dom";
 
-const CreateEventForm = (props) => {
+const CreateEventForm = ({
+  newEventData,
+  handleChange,
+  handleSubmitStepOne,
+}) => {
   return (
     <>
       <Form>
@@ -13,6 +16,9 @@ const CreateEventForm = (props) => {
             name="eventTitle"
             id="eventTitle"
             placeholder="Event Title"
+            value={newEventData.eventTitle}
+            onChange={handleChange}
+            required
           />
         </FormGroup>
         <FormGroup>
@@ -22,6 +28,9 @@ const CreateEventForm = (props) => {
             name="eventDate"
             id="eventDate"
             placeholder="Date"
+            value={newEventData.eventDate}
+            onChange={handleChange}
+            required
           />
         </FormGroup>
         <FormGroup>
@@ -31,6 +40,9 @@ const CreateEventForm = (props) => {
             name="eventTime"
             id="eventTime"
             placeholder="Start Time"
+            value={newEventData.eventTime}
+            onChange={handleChange}
+            required
           />
         </FormGroup>
         <FormGroup>
@@ -40,6 +52,9 @@ const CreateEventForm = (props) => {
             name="organization"
             id="organization"
             placeholder="Organization"
+            value={newEventData.organization}
+            onChange={handleChange}
+            required
           />
         </FormGroup>
         <FormGroup>
@@ -49,6 +64,9 @@ const CreateEventForm = (props) => {
             name="eventLeader"
             id="eventLeader"
             placeholder="Event Leader"
+            value={newEventData.eventLeader}
+            onChange={handleChange}
+            required
           />
         </FormGroup>
         <FormGroup>
@@ -58,12 +76,14 @@ const CreateEventForm = (props) => {
             name="contactInfo"
             id="contactInfo"
             placeholder="Contact Info"
+            value={newEventData.contactInfo}
+            onChange={handleChange}
+            required
           />
         </FormGroup>
       </Form>
-      <Link to="/map-event-create">
-        <Button>Continue</Button>
-      </Link>
+      // <Input type="submit" value="submit" />
+      <Button onClick={() => handleSubmitStepOne()}>Create Map</Button>
     </>
   );
 };

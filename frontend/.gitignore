@@ -25,3 +25,4 @@ yarn-debug.log*
 yarn-error.log*
 
 /src/components/Map2(Legacy).js
+/src/components/MapCreateEvent(Legacy).js
