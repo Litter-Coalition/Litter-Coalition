@@ -8,7 +8,8 @@
       },
       "domains": [
           "localhost:8080",
-          "127.0.0.1:8080"
+          "127.0.0.1:8080",
+          "litter-coalition:8080"
       ],
       "formatQuality": {
           "jpeg": 80,
@@ -32,16 +33,16 @@
   },
   "sources": {
       "styling-example": {
-          "url": "mbtiles://nyc_base.mbtiles",
+          "url": "mbtiles://nyc_detail.mbtiles",
           "type": "vector"
       }
   },
   "data": {
-      "cl-1": {
+      "all-streets": {
           "mbtiles": "centerline.mbtiles"
       },
       "styling-example": {
-        "mbtiles": "nyc_base.mbtiles"
+        "mbtiles": "nyc_detail.mbtiles"
       }
   }
 }

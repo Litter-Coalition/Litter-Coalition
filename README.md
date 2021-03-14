@@ -14,7 +14,7 @@ docker-compose up
 
 Sample data available in Postgres and as MBtiles via the following:
 
-1. Save  NYC [streets data](https://data.cityofnewyork.us/api/views/exjm-f27b/files/7fdd753b-08d3-4cdc-aaad-94be7c5a32a6?download=true&filename=Centerline_20170501.zip) to `./data/raw/`.
+1. Save NYC [streets data](https://data.cityofnewyork.us/api/views/exjm-f27b/files/7fdd753b-08d3-4cdc-aaad-94be7c5a32a6?download=true&filename=Centerline_20170501.zip) to `./data/raw/`.
 
 2. Save OpenMapTiles [basemap layer data](https://data.maptiler.com/downloads/tileset/osm/north-america/us/new-york/new-york/) using the onetime download link given on the page. Replace `<TOKEN>` in the command below:
 
@@ -25,8 +25,8 @@ Sample data available in Postgres and as MBtiles via the following:
 3. Exec into `litter-coalition_db_1`  to populate the DB and generate mbtiles.
 
     ```bash
-    # On Host
-    `docker exec -ti litter-coalition_db_1 bash`
+    # On Host; to exec into container...
+    docker exec -ti litter-coalition_db_1 bash
     ```
 
     ```bash
@@ -52,7 +52,7 @@ Sample data available in Postgres and as MBtiles via the following:
 
    - Under `Styles` there should be an entry with a small rendered map of Manhattan. Click `viewer` and the map preview will open in Queens.
   
-   - Under `data` there should be two panels named `styling-example` and `centerline`. Click `inspect` and the map preview will open in Queens.
+   - Under `data` there should be two panels named `styling-example` and `all-streets`. Click `inspect` and the map preview will open in Queens.
 
 ### Flask
 
