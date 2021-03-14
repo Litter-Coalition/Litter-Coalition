@@ -133,3 +133,5 @@ dmypy.json
 
 # exclude data
 data/
+
+.idea
