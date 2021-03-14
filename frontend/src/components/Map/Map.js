@@ -47,6 +47,7 @@ const Map = (props) => {
   const handleRemove = () => {
     setAddNewEvent(false);
     polygons.push({ popup: "test", shape: newEvent });
+    setNewEvent([]);
   };
 
   return (
