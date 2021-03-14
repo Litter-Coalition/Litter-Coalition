@@ -13,7 +13,6 @@ const LandingPage = () => {
         <Link to='/report'>Report</Link><br/>
         <Link to='/faq'>FAQ</Link><br/>
         <LoginButton/>
-        <ShareButton platform='facebook'/>
         </>
     )
 }
