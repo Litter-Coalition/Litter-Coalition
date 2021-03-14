@@ -6,9 +6,15 @@ const CreateEventForm = ({
   handleChange,
   handleSubmitStepOne,
 }) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("poope2");
+    handleSubmitStepOne();
+  };
+
   return (
     <>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Label for="eventTitle">Event Title</Label>
           <Input
@@ -82,8 +88,8 @@ const CreateEventForm = ({
           />
         </FormGroup>
       </Form>
-      // <Input type="submit" value="submit" />
       <Button onClick={() => handleSubmitStepOne()}>Create Map</Button>
+      {/* <Input type="submit" value="Create Map" /> */}
     </>
   );
 };
