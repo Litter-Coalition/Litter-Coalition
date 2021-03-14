@@ -31,7 +31,7 @@
     }
   },
   "sources": {
-      "bg": {
+      "styling-example": {
           "url": "mbtiles://nyc_base.mbtiles",
           "type": "vector"
       }
@@ -40,11 +40,8 @@
       "cl-1": {
           "mbtiles": "centerline.mbtiles"
       },
-      "cl-2": {
-        "mbtiles": "centerline_active.mbtiles"
-      },
-      "bg": {
+      "styling-example": {
         "mbtiles": "nyc_base.mbtiles"
-    }
+      }
   }
 }

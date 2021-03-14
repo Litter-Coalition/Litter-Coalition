@@ -6,7 +6,7 @@
   },
   "sources":{
     "openmaptiles":{
-      "url": "mbtiles://{bg}",
+      "url": "mbtiles://{styling-example}",
       "type": "vector"
     }
   },
