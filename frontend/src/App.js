@@ -5,6 +5,8 @@ import ViewEventsPage from "./pages/ViewEventsPage";
 import ReportPage from "./pages/ReportPage";
 import FAQPage from "./pages/FAQPage";
 
+import GeoLocator from "./utils/geolocator";
+
 function App() {
   return (
     <div className="App">
