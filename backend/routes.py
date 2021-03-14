@@ -3,6 +3,8 @@ from os import environ
 from flask import session
 from flask import redirect
 from flask import request
+from flask import Response
+
 
 from utils import requires_auth
 from app import app
@@ -67,18 +69,15 @@ def event():
 
 @app.route('/<zoom>/<x>/<y>.<tile_format>', methods=["GET"])
 def tiles(zoom, x, y, tile_format):
-    return "{} {} {} {}".format(zoom, x, y, tile_format)
+    try:
+        tile = models.Tile(zoom, x, y, tile_format)
+    except ValueError as e:
+        return {"error": "{}".format(e)}, 400
+    try:
+        envelope = tile.to_envelope()
+        sql = tile.envelope_to_sql(envelope)
+        pbf = tile.sql_to_pbf(sql)
+        return Response(pbf, mimetype="application/vnd.mapbox-vector-tile")
+    except:
+        return {"error": "unknown error occurred"}, 500
 
-
-# def tileIsValid(self, tile):
-#     if not ('x' in tile and 'y' in tile and 'zoom' in tile):
-#         return False
-#     if 'format' not in tile or tile['format'] not in ['pbf', 'mvt']:
-#         return False
-#     size = 2 ** tile['zoom'];
-#     if tile['x'] >= size or tile['y'] >= size:
-#         return False
-#     if tile['x'] < 0 or tile['y'] < 0:
-#         return False
-#     return True
-#
