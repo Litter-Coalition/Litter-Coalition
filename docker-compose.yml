@@ -1,18 +1,23 @@
 version: '2.0'
 services:
   nginx:
-    image: nginx:latest
+    build: nginx/
     ports:
       - "80:80"
-    depends_on:
-      - db
+    volumes:
+      - ./frontend/build:/var/www/react  
+      - socket-volume:/app/socket
+
   api:
     build: backend/
     ports:
       - "5000:5000"
     env_file:
       - backend/.env
-
+    depends_on:
+      - db
+    volumes:
+      - socket-volume:/app/socket
 
   tileserver:
     image: maptiler/tileserver-gl
@@ -41,3 +46,4 @@ services:
 
 volumes:
   postgres_data:
+  socket-volume:
