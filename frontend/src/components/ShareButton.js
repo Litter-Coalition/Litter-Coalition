@@ -1,13 +1,14 @@
 import React from 'react'
-
+//                     String    Array of strings
 const ShareButton = ({platform, hashtags}) => {
-
     return(
         <>
             { platform === 'facebook' ?
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/AnansiOmega&=TrashWarriors"
-                    onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
-                    target="_blank">Share</a>
+                <a href="https://www.facebook.com/sharer/sharer.php?u=https://github.com/AnansiOmega&=TrashWarriors"
+                onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+                target="_blank">
+                Share
+                </a>
                 :
                 <a  className="twitter-share-button"
                     href="https://twitter.com/intent/tweet"

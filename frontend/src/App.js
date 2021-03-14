@@ -2,6 +2,7 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import ViewEventsPage from "./pages/ViewEventsPage";
+import ViewEventPage from './pages/ViewEventPage';
 import ReportPage from "./pages/ReportPage";
 import FAQPage from "./pages/FAQPage";
 import CreateEventForm from "./pages/CreateEventForm";
@@ -16,6 +17,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route path="/view-events" component={ViewEventsPage} />
+        <Route path="/event/:id" component={ViewEventPage} />
         <Route path="/report" component={ReportPage} />
         <Route path="/faq" component={FAQPage} />
         <Route path="/create-event-form" component={CreateEventForm} />
