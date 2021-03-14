@@ -27,15 +27,33 @@ const Map = (props) => {
     ],
   ]);
 
+  const [addNewEvent, setAddNewEvent] = React.useState(false);
+  const [newEvent, setNewEvent] = React.useState([]);
+
+  const handleAdd = () => {
+    setAddNewEvent(true);
+  };
+
+  const handleRemove = () => {
+    setAddNewEvent(false);
+    polygons.push(newEvent);
+  };
+
   return (
     <div>
+      {addNewEvent ? (
+        <button onClick={() => handleRemove()}>Finish Drawing</button>
+      ) : (
+        <button onClick={() => handleAdd()}>Add an Event</button>
+      )}
       <MapContainer center={[40.75, -73.931]} zoom={12} scrollWheelZoom={true}>
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <AddLocationMarker />
-        <Polygons polygons={polygons} />
+        {addNewEvent ? <AddLocationMarker newEvent={newEvent} /> : null}
+        {addNewEvent ? <Polygons polygons={newEvent} /> : null}
+        <Polygons polygons={polygons} newEvent={newEvent} />
       </MapContainer>
     </div>
   );
