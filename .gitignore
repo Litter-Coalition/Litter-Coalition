@@ -131,7 +131,6 @@ dmypy.json
 # VSC settings
 .vscode
 
-
 # exclude data
 data/
 
