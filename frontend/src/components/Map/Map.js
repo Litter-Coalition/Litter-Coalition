@@ -22,59 +22,19 @@ const Map = (props) => {
 		console.log("wwww");
 	};
 
-	// duplicated no time to refactor
-	const highlightHoveredRoute = (i) => {
-		const polygonCopy = polygons;
-		polygonCopy[i].fillOptions = { color: "#FAE6E6" };
-		setPolygons([...polygonCopy]);
-	};
-
-	const unHighlightHoveredRoute = (i) => {
-		const polygonCopy = polygons;
-		polygonCopy[i].fillOptions = { color: "#E88080" };
-		setPolygons([...polygonCopy]);
-	};
-
-	const routes = polygons.map((polygon, index) => {
-		return (
-			<Row form>
-				<Col
-					onMouseEnter={() => highlightHoveredRoute(index)}
-					onMouseLeave={() => unHighlightHoveredRoute(index)}
-				>
-					<FormGroup>
-						<Input
-							type="text"
-							name="route"
-							placeholder={polygon.popup}
-						/>
-					</FormGroup>
-				</Col>
-			</Row>
-		);
-	});
-
-	return (
-		<div>
-			<MapContainer
-				center={[40.75, -73.931]}
-				zoom={12}
-				scrollWheelZoom={true}
-			>
-				<MapUI addNewPolygon={addNewPolygon} />
-				<TileLayer
-					attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-					// url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-					url="http://localhost:8080/data/centerline/{z}/{x}/{y}.pbf"
-				/>
-				<Polygons
-					polygons={polygons}
-					updatePolygonPopupData={updatePolygonPopupData}
-				/>
-			</MapContainer>
-			<Form>{routes}</Form>
-		</div>
-	);
+  return (
+    <div>
+      <MapContainer center={[40.75, -73.931]} zoom={12} scrollWheelZoom={true}>
+        <MapUI addNewPolygon={addNewPolygon} />
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          // url="http://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png"
+        />
+        <Polygons polygons={polygons} />
+      </MapContainer>
+    </div>
+  );
 };
 
 export default Map;
