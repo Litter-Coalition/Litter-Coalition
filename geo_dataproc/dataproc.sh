@@ -27,11 +27,15 @@ fi
 # Ref: https://fuzzytolerance.info/blog/2017/02/02/Making-your-own-tiles-with-Tippecanoe/
 # Ref: https://wiki.openstreetmap.org/wiki/Zoom_levels
 tippecanoe -L $2:./data/layers/$2.geojson \
-    -f -F -ps -pf -pk -pt -Bg \
-    --drop-densest-as-needed \
-    -o ./data/layers/$2.mbtiles -z18 -Z10\
-    --drop-lines\
-    --force
+    --force \
+    --reverse \
+    -z16 -Z1 \
+    --extend-zooms-if-still-dropping \
+    --no-tile-size-limit \
+    --no-line-simplification \
+    --no-tiny-polygon-reduction \
+    --exclude-all \
+    -o ./data/layers/$2.mbtiles
 
 # Cleanup: save a bit of space in the container
 rm -rf /data/layers/$2 /data/layers/$2.geojson
